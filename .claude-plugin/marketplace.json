@@ -8,14 +8,14 @@
   "plugins": [
     {
       "name": "cncr-plugin-marketplace",
-      "description": "CNCR 页面流程技能包插件（核心技能：cncr-page-process-create，含预留槽位）",
+      "description": "CNCR 页面流程技能包插件（核心：cncr-page-process-create；扩展：svn-commit；统一前缀：【CNCR_SKILLS】）",
       "source": "./plugins/cncr-plugin-marketplace",
       "category": "development",
       "homepage": "https://github.com/XmrZeiJbCool/cncr-page-process-create-marketplace"
     }
   ],
   "metadata": {
-    "description": "CNCR 内部页面流程技能包 Marketplace（核心技能：cncr-page-process-create）",
-    "version": "0.1.2"
+    "description": "CNCR 内部页面流程技能包 Marketplace（核心：cncr-page-process-create，扩展：svn-commit）",
+    "version": "0.1.3"
   }
 }
