@@ -1,7 +1,7 @@
 {
   "name": "cncr-page-process-create-plugin",
-  "description": "CNCR skill pack plugin (core skill: cncr-page-process-create)",
-  "version": "0.1.0",
+  "description": "CNCR 页面流程技能包插件（核心技能：cncr-page-process-create）",
+  "version": "0.1.1",
   "author": {
     "name": "xuey",
     "email": "you@example.com"
@@ -10,9 +10,9 @@
   "repository": "https://github.com/XmrZeiJbCool/cncr-page-process-create-marketplace",
   "license": "MIT",
   "keywords": [
-    "skills",
-    "workflow",
-    "page-dev",
+    "技能",
+    "工作流",
+    "页面开发",
     "cncr"
   ]
 }

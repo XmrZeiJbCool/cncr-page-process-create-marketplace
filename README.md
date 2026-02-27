@@ -1,18 +1,24 @@
-# cncr skill-pack marketplace
+# CNCR 技能包 Marketplace
 
-## Structure
-- `.claude-plugin/marketplace.json`: marketplace manifest
-- `plugins/cncr-page-process-create-plugin/.claude-plugin/plugin.json`: plugin manifest
-- `plugins/cncr-page-process-create-plugin/skills/cncr-page-process-create`: skill pack payload (core + reserved slots)
+## 目录结构
+- `.claude-plugin/marketplace.json`：Marketplace 清单
+- `plugins/cncr-page-process-create-plugin/.claude-plugin/plugin.json`：插件清单
+- `plugins/cncr-page-process-create-plugin/skills/`：技能包目录（核心 + 预留槽位）
 
-## Local test
+## 本地验证
 ```bash
 claude plugin validate /Users/xuey/Desktop/cncr-page-process-create-marketplace
 claude plugin marketplace add /Users/xuey/Desktop/cncr-page-process-create-marketplace
 claude plugin install cncr-page-process-create-plugin@cncr-marketplace
 ```
 
-## Remove
+## 远端安装（GitHub）
+```bash
+claude plugin marketplace add XmrZeiJbCool/cncr-page-process-create-marketplace
+claude plugin install cncr-page-process-create-plugin@cncr-marketplace
+```
+
+## 卸载
 ```bash
 claude plugin uninstall cncr-page-process-create-plugin
 claude plugin marketplace remove cncr-marketplace

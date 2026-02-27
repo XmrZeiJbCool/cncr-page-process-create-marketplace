@@ -1,7 +1,7 @@
-# CNCR skill pack
+# CNCR 技能包说明
 
-- core skill: `cncr-page-process-create` (active)
-- reserved slot: `cncr-reserved-slot-01` (empty, no SKILL.md)
-- reserved slot: `cncr-reserved-slot-02` (empty, no SKILL.md)
+- 核心技能：`cncr-page-process-create`（已启用）
+- 预留槽位：`cncr-reserved-slot-01`（空目录，无 `SKILL.md`）
+- 预留槽位：`cncr-reserved-slot-02`（空目录，无 `SKILL.md`）
 
-Only folders that contain `SKILL.md` are active skills.
+只有包含 `SKILL.md` 的目录才会被 Claude 识别为可用技能。
