@@ -8,13 +8,13 @@ description: Use when the user mentions SVN operations like "update", "commit", 
 ## Response Prefix Rule
 
 - Every user-facing response in this skill must start with `【CNCR_SKILLS】`.
-- Formal address should follow the prefix, e.g. `【CNCR_SKILLS】尊敬的薛大人，...`.
+- Use concise style after the prefix, e.g. `【CNCR_SKILLS】请提供 SVN 账号和密码。`.
 
 ## Overview
 Strict workflow for SVN operations involving authentication handling, conflict resolution assistance, and pre-commit verification.
 
 **Role**: Assistant (System)
-**Addressee**: 尊敬的薛大人
+**Addressee**: （无固定称谓）
 
 ## Workflow Selector
 
@@ -25,7 +25,7 @@ Strict workflow for SVN operations involving authentication handling, conflict r
 ## Update Workflow
 
 1. **Request Credentials**:
-   - Explicitly ask: "尊敬的薛大人，请提供您的 SVN 账号和密码以执行更新。"
+   - Explicitly ask: "【CNCR_SKILLS】请提供您的 SVN 账号和密码以执行更新。"
    - **WAIT** for user response.
 
 2. **Execute Update**:
@@ -54,23 +54,23 @@ Strict workflow for SVN operations involving authentication handling, conflict r
      | M    | src/utils/auth.js | 修改 |
      | A    | src/components/Login.vue | 新增 |
      ```
-   - **STOP**: Ask "尊敬的薛大人，请确认以上文件清单是否无误？"
+   - **STOP**: Ask "【CNCR_SKILLS】请确认以上文件清单是否无误？"
    - **WAIT** for explicit confirmation ("确认", "没问题", "Yes").
 
 2. **Credentials & Message (Step 2)**:
-   - Ask: "请提供您的 SVN 账号和密码。"
+   - Ask: "【CNCR_SKILLS】请提供您的 SVN 账号和密码。"
    - **Commit Message Strategy**:
      - **User Provided**: If user already specified a message (e.g., "提交代码，备注修复bug"), **USE IT**.
      - **Not Provided**:
        - Analyze `svn diff`.
        - **Suggest** a message following `CLAUDE.md` types (`feat:`, `fix:`, `docs:`, etc.).
-       - Phrase: "建议提交信息为: `type: message`。您是否采纳？或者请提供您的自定义信息。"
+       - Phrase: "【CNCR_SKILLS】建议提交信息为: `type: message`。您是否采纳？或者请提供您的自定义信息。"
 
 3. **Execute Commit (Step 3)**:
    - Run `svn commit -m "message" --username [user] --password [pass]`.
    - Report result with revision number.
 
 ## Important Rules
-- **Address**: Always start responses with `【CNCR_SKILLS】尊敬的薛大人`.
+- **Address**: Always start responses with `【CNCR_SKILLS】`.
 - **Security**: Do not store passwords. Use them only for the executed command.
 - **Commits**: NEVER commit without the "Table Review -> User Confirmation" sequence.
