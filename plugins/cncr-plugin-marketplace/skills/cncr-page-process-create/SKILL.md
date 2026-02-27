@@ -1,8 +1,6 @@
 ---
 name: cncr-page-process-create
 description: 使用固定“全流程页面开发”Markdown模板执行页面开发，支持接口切换（1/2）与稳定回填（3/4/5/6）
-metadata:
-  short-description: 全流程页面开发（1/2可切换，3/4/5/6固定）
 ---
 
 # cncr-page-process-create

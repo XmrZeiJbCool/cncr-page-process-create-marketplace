@@ -1,76 +1,78 @@
 ---
 name: svn-commit
-description: Use when the user mentions SVN operations like "update", "commit", "pull", or "push". Handles authentication, conflict resolution, and strict commit verification.
+description: 当用户提到 SVN 的更新、提交、pull、push、拉取或上传时使用。负责鉴权、冲突处理和严格提交校验。
 ---
 
-# SVN Commit & Update Workflow
+# SVN 提交与更新流程
 
-## Response Prefix Rule
+## 输出前缀规则
 
-- Every user-facing response in this skill must start with `【CNCR_SKILLS】`.
-- Use concise style after the prefix, e.g. `【CNCR_SKILLS】请提供 SVN 账号和密码。`.
+- 所有对用户可见的回复都必须以 `【CNCR_SKILLS】` 开头。
+- 前缀后保持简洁表达，例如：`【CNCR_SKILLS】请提供 SVN 账号和密码。`
 
-## Overview
-Strict workflow for SVN operations involving authentication handling, conflict resolution assistance, and pre-commit verification.
+## 概述
+
+用于 SVN 操作的严格流程，覆盖认证处理、冲突处理辅助和提交前核验。
 
 **Role**: Assistant (System)
 **Addressee**: （无固定称谓）
 
-## Workflow Selector
+## 流程选择
 
-1. **Analyze User Intent**:
-   - **Update** keywords: "更新", "update", "pull", "拉取" -> Go to [Update Workflow](#update-workflow)
-   - **Commit** keywords: "提交", "commit", "push", "上传" -> Go to [Commit Workflow](#commit-workflow)
+1. **识别用户意图**：
+   - **更新类关键词**："更新"、"update"、"pull"、"拉取" -> 进入 [更新流程](#更新流程)
+   - **提交类关键词**："提交"、"commit"、"push"、"上传" -> 进入 [提交流程](#提交流程)
 
-## Update Workflow
+## 更新流程
 
-1. **Request Credentials**:
-   - Explicitly ask: "【CNCR_SKILLS】请提供您的 SVN 账号和密码以执行更新。"
-   - **WAIT** for user response.
+1. **请求凭据**：
+   - 明确询问："【CNCR_SKILLS】请提供您的 SVN 账号和密码以执行更新。"
+   - **等待**用户回复。
 
-2. **Execute Update**:
-   - Run `svn update --username [user] --password [pass]`.
+2. **执行更新**：
+   - 运行 `svn update --username [user] --password [pass]`。
 
-3. **Check Conflicts**:
-   - Scan output for lines starting with `C`.
-   - **If NO conflicts**: Report success with revision number. End.
-   - **If conflicts**:
-     - List all conflicting files immediately.
-     - **Enter Resolution Loop** for each file:
-       1. Show diff (Local/Mine vs Server/Theirs).
-       2. Ask: "保留我的修改 (A), 使用服务器版本 (B), 还是手动合并 (C)?"
-       3. Assist in applying the fix.
-       4. Run `svn resolved <file>`.
-     - **Verify**: Confirm all conflicts are resolved before reporting success.
+3. **检查冲突**：
+   - 扫描输出中以 `C` 开头的行。
+   - **若无冲突**：报告成功并带 revision 编号，结束。
+   - **若有冲突**：
+     - 立即列出全部冲突文件。
+     - 对每个文件进入**冲突处理循环**：
+       1. 展示 diff（本地/Mine vs 远端/Theirs）。
+       2. 询问："保留我的修改 (A)、使用服务器版本 (B)，还是手动合并 (C)?"
+       3. 协助应用选择。
+       4. 运行 `svn resolved <file>`。
+     - **验证**：确认所有冲突均已解决后再报告完成。
 
-## Commit Workflow
+## 提交流程
 
-1. **Review Changes (Step 1)**:
-   - Run `svn status`.
-   - **Output Requirement**: Display changes in a **Markdown Table**.
+1. **变更审阅（步骤1）**：
+   - 运行 `svn status`。
+   - **输出要求**：以 **Markdown 表格**展示变更。
      ```markdown
-     | 状态 | 文件路径 | 描述 (简要推测) |
+     | 状态 | 文件路径 | 描述（简要推测） |
      | :--- | :--- | :--- |
      | M    | src/utils/auth.js | 修改 |
      | A    | src/components/Login.vue | 新增 |
      ```
-   - **STOP**: Ask "【CNCR_SKILLS】请确认以上文件清单是否无误？"
-   - **WAIT** for explicit confirmation ("确认", "没问题", "Yes").
+   - **停止并确认**：询问 "【CNCR_SKILLS】请确认以上文件清单是否无误？"
+   - **等待**用户明确确认（如 "确认"、"没问题"、"Yes"）。
 
-2. **Credentials & Message (Step 2)**:
-   - Ask: "【CNCR_SKILLS】请提供您的 SVN 账号和密码。"
-   - **Commit Message Strategy**:
-     - **User Provided**: If user already specified a message (e.g., "提交代码，备注修复bug"), **USE IT**.
-     - **Not Provided**:
-       - Analyze `svn diff`.
-       - **Suggest** a message following `CLAUDE.md` types (`feat:`, `fix:`, `docs:`, etc.).
-       - Phrase: "【CNCR_SKILLS】建议提交信息为: `type: message`。您是否采纳？或者请提供您的自定义信息。"
+2. **凭据与提交信息（步骤2）**：
+   - 询问："【CNCR_SKILLS】请提供您的 SVN 账号和密码。"
+   - **提交信息策略**：
+     - **用户已提供**：若用户已给 message（如"提交代码，备注修复bug"），则**直接使用**。
+     - **用户未提供**：
+       - 分析 `svn diff`。
+       - 依据 `CLAUDE.md` 类型（`feat:`、`fix:`、`docs:` 等）给出建议。
+       - 提示语："【CNCR_SKILLS】建议提交信息为: `type: message`。您是否采纳？或者请提供您的自定义信息。"
 
-3. **Execute Commit (Step 3)**:
-   - Run `svn commit -m "message" --username [user] --password [pass]`.
-   - Report result with revision number.
+3. **执行提交（步骤3）**：
+   - 运行 `svn commit -m "message" --username [user] --password [pass]`。
+   - 报告提交结果与 revision 编号。
 
-## Important Rules
-- **Address**: Always start responses with `【CNCR_SKILLS】`.
-- **Security**: Do not store passwords. Use them only for the executed command.
-- **Commits**: NEVER commit without the "Table Review -> User Confirmation" sequence.
+## 重要规则
+
+- **前缀**：所有回复必须以 `【CNCR_SKILLS】` 开头。
+- **安全**：不要存储密码；仅在执行命令时临时使用。
+- **提交门禁**：禁止跳过“表格审阅 -> 用户确认”直接提交。
