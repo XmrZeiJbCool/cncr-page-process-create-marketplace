@@ -1,7 +1,7 @@
 {
-  "name": "cncr-page-process-create-plugin",
+  "name": "cncr-plugin-marketplace",
   "description": "CNCR 页面流程技能包插件（核心技能：cncr-page-process-create）",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": {
     "name": "xuey",
     "email": "you@example.com"
