@@ -1,0 +1,21 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "cncr-marketplace",
+  "owner": {
+    "name": "xuey",
+    "email": "you@example.com"
+  },
+  "plugins": [
+    {
+      "name": "cncr-page-process-create-plugin",
+      "description": "Claude Code skill plugin containing cncr-page-process-create",
+      "source": "./plugins/cncr-page-process-create-plugin",
+      "category": "development",
+      "homepage": "https://github.com/<your-org>/<your-repo>"
+    }
+  ],
+  "metadata": {
+    "description": "CNCR internal marketplace for page process development skills",
+    "version": "0.1.0"
+  }
+}

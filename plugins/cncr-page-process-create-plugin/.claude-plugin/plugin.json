@@ -1,0 +1,13 @@
+{
+  "name": "cncr-page-process-create-plugin",
+  "description": "Skill plugin for cncr-page-process-create workflow",
+  "version": "0.1.0",
+  "author": {
+    "name": "xuey",
+    "email": "you@example.com"
+  },
+  "homepage": "https://github.com/<your-org>/<your-repo>",
+  "repository": "https://github.com/<your-org>/<your-repo>",
+  "license": "MIT",
+  "keywords": ["skills", "workflow", "page-dev", "cncr"]
+}
