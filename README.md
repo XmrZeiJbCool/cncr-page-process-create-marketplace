@@ -1,9 +1,9 @@
-# cncr-page-process-create marketplace
+# cncr skill-pack marketplace
 
 ## Structure
 - `.claude-plugin/marketplace.json`: marketplace manifest
 - `plugins/cncr-page-process-create-plugin/.claude-plugin/plugin.json`: plugin manifest
-- `plugins/cncr-page-process-create-plugin/skills/cncr-page-process-create`: skill payload
+- `plugins/cncr-page-process-create-plugin/skills/cncr-page-process-create`: skill pack payload (core + reserved slots)
 
 ## Local test
 ```bash
