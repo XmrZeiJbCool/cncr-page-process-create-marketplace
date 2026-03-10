@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""校验全流程页面开发模板的结构与映射约束。"""
+"""校验全流程页面开发执行文档的结构与映射约束。"""
 
 from __future__ import annotations
 
@@ -70,8 +70,8 @@ def validate(text: str) -> dict:
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="校验全流程页面开发模板")
-    parser.add_argument("--md", required=True, help="模板文件路径")
+    parser = argparse.ArgumentParser(description="校验全流程页面开发执行文档")
+    parser.add_argument("--md", required=True, help="执行MD文件路径")
     args = parser.parse_args()
 
     md_path = Path(args.md).expanduser().resolve()
