@@ -1,0 +1,4 @@
+interface:
+  display_name: "CNCR 设计预览增强"
+  short_description: "为 CNCR 页面预览提供审美规范、结构约束与设计指引"
+  default_prompt: "使用 $cncr-design-aesthetic，为当前页面生成符合规范的设计预览。"

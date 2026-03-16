@@ -1,7 +1,7 @@
 {
   "name": "cncr-plugin-marketplace",
   "description": "CNCR 页面流程技能包插件（核心：cncr-page-process-create；扩展：svn-commit；统一前缀：【CNCR_SKILLS】）",
-  "version": "0.1.8",
+  "version": "0.3.2",
   "author": {
     "name": "KnightXue",
     "email": "you@example.com"

@@ -1,5 +1,4 @@
 {
-  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "cncr-marketplace",
   "owner": {
     "name": "KnightXue",
@@ -16,6 +15,6 @@
   ],
   "metadata": {
     "description": "CNCR 内部页面流程技能包 Marketplace（核心：cncr-page-process-create，扩展：svn-commit）",
-    "version": "0.1.8"
+    "version": "0.3.2"
   }
 }

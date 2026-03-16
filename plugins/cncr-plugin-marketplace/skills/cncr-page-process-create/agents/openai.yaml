@@ -1,0 +1,4 @@
+interface:
+  display_name: "CNCR 页面开发流程"
+  short_description: "根据业务执行 MD 驱动 CNCR 页面开发与验收"
+  default_prompt: "使用 $cncr-page-process-create，严格依据我提供的业务执行 MD 完成页面开发。"
